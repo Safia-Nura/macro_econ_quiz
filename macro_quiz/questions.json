@@ -1,0 +1,17 @@
+[{
+    "text": "A country has C=500, I=200, G=300, NX=50. What is the GDP?",
+    "options": ["950","1000","1050","1100"],
+    "correct_index": 2,
+    "topic": "GDP",
+    "explanation":" GDP = C+I+G+NX = 500+200+300+50 =1050"
+
+},
+{
+    "text": "Nominal GDP is $800bn, GDP deflator is 125. What is the real GDP?",  
+     "options": ["$600bn","$640bn","$700b","$725bn"],
+    "correct_index": 1,
+    "topic": "Real vs Nominal",
+    "explanation":" Real GDP =(Nominal GDP/Deflator) x100 =640"
+
+  
+}]
