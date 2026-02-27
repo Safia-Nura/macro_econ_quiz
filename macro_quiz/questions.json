@@ -1,17 +1,177 @@
-[{
-    "text": "A country has C=500, I=200, G=300, NX=50. What is the GDP?",
-    "options": ["950","1000","1050","1100"],
+[
+  {
+    "text": "A country has C=500, I=200, G=300, NX=50. What is GDP?",
+    "options": ["950", "1000", "1050", "1100"],
     "correct_index": 2,
     "topic": "GDP",
-    "explanation":" GDP = C+I+G+NX = 500+200+300+50 =1050"
-
-},
-{
-    "text": "Nominal GDP is $800bn, GDP deflator is 125. What is the real GDP?",  
-     "options": ["$600bn","$640bn","$700b","$725bn"],
+    "explanation": "GDP = C + I + G + NX = 500 + 200 + 300 + 50 = 1050"
+  },
+  {
+    "text": "Which formula represents the expenditure approach to GDP?",
+    "options": ["GDP = C + I + G", "GDP = C + I + G + NX", "GDP = C + G + NX", "GDP = I + G + NX"],
+    "correct_index": 1,
+    "topic": "GDP",
+    "explanation": "The full expenditure approach includes Net Exports (NX)."
+  },
+  {
+    "text": "If C=600, I=150, G=250, Exports=100, Imports=80. What is GDP?",
+    "options": ["1020", "1080", "1100", "1120"],
+    "correct_index": 0,
+    "topic": "GDP",
+    "explanation": "NX = Exports - Imports = 20. GDP = 600+150+250+20 = 1020"
+  },
+  {
+    "text": "Government spending rises by 200 with all else equal. GDP changes by?",
+    "options": ["Less than 200", "Exactly 200", "More than 200", "Zero"],
+    "correct_index": 1,
+    "topic": "GDP",
+    "explanation": "In the basic model, a rise in G increases GDP by the same amount."
+  },
+  {
+    "text": "A country runs a trade deficit. What does this mean for NX?",
+    "options": ["NX is positive", "NX is zero", "NX is negative", "NX equals imports"],
+    "correct_index": 2,
+    "topic": "GDP",
+    "explanation": "A trade deficit means imports exceed exports so NX is negative."
+  },
+  {
+    "text": "Nominal GDP is $800bn, GDP deflator is 125. What is real GDP?",
+    "options": ["$600bn", "$640bn", "$700bn", "$725bn"],
     "correct_index": 1,
     "topic": "Real vs Nominal",
-    "explanation":" Real GDP =(Nominal GDP/Deflator) x100 =640"
-
-  
-}]
+    "explanation": "Real GDP = (Nominal GDP / Deflator) x 100 = (800/125) x 100 = 640"
+  },
+  {
+    "text": "If nominal GDP grows 10% and inflation is 10%, real GDP growth is?",
+    "options": ["10%", "20%", "0%", "5%"],
+    "correct_index": 2,
+    "topic": "Real vs Nominal",
+    "explanation": "When nominal growth equals inflation, real growth is zero."
+  },
+  {
+    "text": "The GDP deflator is used to?",
+    "options": ["Measure unemployment", "Convert nominal to real GDP", "Calculate trade balance", "Measure money supply"],
+    "correct_index": 1,
+    "topic": "Real vs Nominal",
+    "explanation": "The GDP deflator removes the effect of price changes to show real output."
+  },
+  {
+    "text": "Nominal GDP = $500bn, Real GDP = $400bn. What is the GDP deflator?",
+    "options": ["80", "100", "120", "125"],
+    "correct_index": 3,
+    "topic": "Real vs Nominal",
+    "explanation": "Deflator = (Nominal / Real) x 100 = (500/400) x 100 = 125"
+  },
+  {
+    "text": "Real GDP rises from $400bn to $420bn. What is the growth rate?",
+    "options": ["4%", "5%", "6%", "7%"],
+    "correct_index": 1,
+    "topic": "Real vs Nominal",
+    "explanation": "Growth = ((420-400)/400) x 100 = 5%"
+  },
+  {
+    "text": "GDP was $500bn last year and $525bn this year. What is the growth rate?",
+    "options": ["4%", "5%", "6%", "7%"],
+    "correct_index": 1,
+    "topic": "Growth Rates",
+    "explanation": "Growth = ((525-500)/500) x 100 = 5%"
+  },
+  {
+    "text": "China GDP grows from $14tn to $15.4tn. What is the growth rate?",
+    "options": ["8%", "9%", "10%", "11%"],
+    "correct_index": 2,
+    "topic": "Growth Rates",
+    "explanation": "Growth = ((15.4-14)/14) x 100 = 10%"
+  },
+  {
+    "text": "US GDP growth is 2.5% and inflation is 3%. Real GDP growth is?",
+    "options": ["-0.5%", "0.5%", "5.5%", "1.5%"],
+    "correct_index": 0,
+    "topic": "Growth Rates",
+    "explanation": "Real growth = Nominal growth - Inflation = 2.5 - 3 = -0.5%"
+  },
+  {
+    "text": "GDP grows from 200 to 242 over two years. Average annual growth rate is?",
+    "options": ["8%", "10%", "11%", "12%"],
+    "correct_index": 1,
+    "topic": "Growth Rates",
+    "explanation": "242/200 = 1.21. Square root = 1.10. Annual growth rate = 10%"
+  },
+  {
+    "text": "Which best describes year-on-year GDP growth?",
+    "options": ["Growth vs previous quarter", "Growth vs same quarter last year", "Growth vs five years ago", "Monthly growth rate"],
+    "correct_index": 1,
+    "topic": "Growth Rates",
+    "explanation": "Year-on-year compares the same period in consecutive years."
+  },
+  {
+    "text": "Exports = $300bn, Imports = $350bn. What is the trade balance?",
+    "options": ["$50bn surplus", "$50bn deficit", "$650bn surplus", "$350bn deficit"],
+    "correct_index": 1,
+    "topic": "Trade Balance",
+    "explanation": "Trade balance = Exports - Imports = 300 - 350 = -$50bn (deficit)"
+  },
+  {
+    "text": "China exports $2.5tn and imports $2.1tn. Trade balance is?",
+    "options": ["$0.4tn deficit", "$0.4tn surplus", "$4.6tn surplus", "$2.1tn deficit"],
+    "correct_index": 1,
+    "topic": "Trade Balance",
+    "explanation": "Trade balance = 2.5 - 2.1 = +$0.4tn surplus"
+  },
+  {
+    "text": "A current account deficit means a country is?",
+    "options": ["Exporting more than importing", "Importing more than exporting", "Balanced in trade", "Growing faster than average"],
+    "correct_index": 1,
+    "topic": "Trade Balance",
+    "explanation": "A current account deficit means spending on imports exceeds export earnings."
+  },
+  {
+    "text": "US trade deficit widens from $50bn to $65bn. The change is?",
+    "options": ["$15bn improvement", "$15bn deterioration", "$115bn total", "$50bn improvement"],
+    "correct_index": 1,
+    "topic": "Trade Balance",
+    "explanation": "A wider deficit means the gap between imports and exports has grown."
+  },
+  {
+    "text": "Which of these would reduce a trade deficit?",
+    "options": ["Increase imports", "Decrease exports", "Increase exports", "Increase government spending"],
+    "correct_index": 2,
+    "topic": "Trade Balance",
+    "explanation": "Higher exports increase the trade balance, reducing or eliminating a deficit."
+  },
+  {
+    "text": "1 USD = 7.2 CNY. How many USD is 360 CNY?",
+    "options": ["$40", "$50", "$55", "$60"],
+    "correct_index": 1,
+    "topic": "Exchange Rates",
+    "explanation": "USD = CNY / exchange rate = 360 / 7.2 = $50"
+  },
+  {
+    "text": "If the USD strengthens against CNY, US exports to China become?",
+    "options": ["Cheaper for Chinese buyers", "More expensive for Chinese buyers", "Unchanged in price", "Priced in CNY automatically"],
+    "correct_index": 1,
+    "topic": "Exchange Rates",
+    "explanation": "A stronger USD means Chinese buyers need more CNY to buy the same USD-priced goods."
+  },
+  {
+    "text": "PPP exchange rate adjusts for differences in?",
+    "options": ["Interest rates", "Trade volumes", "Price levels between countries", "GDP growth rates"],
+    "correct_index": 2,
+    "topic": "Exchange Rates",
+    "explanation": "PPP adjusts for price level differences so comparisons reflect real purchasing power."
+  },
+  {
+    "text": "1 GBP = 1.25 USD. A product costs £80 in the UK. US equivalent price is?",
+    "options": ["$64", "$80", "$100", "$125"],
+    "correct_index": 2,
+    "topic": "Exchange Rates",
+    "explanation": "USD price = GBP price x exchange rate = 80 x 1.25 = $100"
+  },
+  {
+    "text": "Which best describes a currency depreciation?",
+    "options": ["The currency buys more foreign currency", "The currency buys less foreign currency", "Interest rates fall", "Inflation rises"],
+    "correct_index": 1,
+    "topic": "Exchange Rates",
+    "explanation": "Depreciation means the currency has weakened and buys less of other currencies."
+  }
+]
