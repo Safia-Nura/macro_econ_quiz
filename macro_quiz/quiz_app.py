@@ -23,7 +23,7 @@ class QuizApp:
         self.score =0
         self.answer_var = tk.IntVar(value=-1)
         # stretches frame to match window size
-        self.grid_rowconfigure(0, weight=1)
+        self.root.grid_rowconfigure(0, weight=1)
         self.root.grid_columnconfigure(0, weight=1)
 
          # Create all frames
@@ -37,8 +37,7 @@ class QuizApp:
         self.show_frame(self.welcome_frame)
 
 
- 
-
+  
 
     def start_quiz(self, name, topic):
     # here this will validate inputs and begin a quiz session.
