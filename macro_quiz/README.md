@@ -72,7 +72,7 @@ All 19 tests should pass.
 
 Every completed quiz attempt is automatically saved to `results.csv` in the
 project folder. Each row records the user name, date, topic, score and total.
-This file can be opened directly in Excel and used as appraisal evidence.
+This file can be opened directly in Excel.
 
 ---
 
