@@ -97,7 +97,7 @@ Open `questions.json` and add a new entry following this format:
 ## Technologies used
 
 Tool & Purpose 
-|---|---|
+---
 - Python 3.9+ Core programming language 
 - Tkinter Desktop GUI framework 
 - csv module: permeant storage for results  
