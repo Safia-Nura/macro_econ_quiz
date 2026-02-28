@@ -268,5 +268,5 @@ class ResultsFrame(tk.Frame):
         self.master.show_frame(WelcomeFrame)
 
 
-    app = QuizApp()
-    app.mainloop()
+app = QuizApp()
+app.mainloop()
