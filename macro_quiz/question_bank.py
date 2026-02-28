@@ -18,6 +18,8 @@ class QuestionBank:
                                            explanation=item.get("explanation", ""))
                              # Add the question to list
                              self.questions.append(q)
+                        print(f"loaded{len(self.questions)} questions")
+                        print(self.get_topics())
         except FileNotFoundError:
             # Raise a clear error message if the file cannot be found
              raise FileNotFoundError(f"Could not find questions file: {filepath}")
@@ -35,9 +37,9 @@ class QuestionBank:
              if topic == None or q.topic == topic:
                   pool.append(q)
             # Check we have enough questions before trying to pick
-             if count >len(pool):
-              print ("Not enough questions")
-             return[]
+        if count >len(pool):
+            print ("Not enough questions")
+            return[]
         # Picks randomly from the pool so the quiz is different each time
         return random.sample(pool, count)
              

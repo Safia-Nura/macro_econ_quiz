@@ -6,9 +6,10 @@ from validators import validate_name, validate_topic
 
 class QuizApp:
     # main Tkinter app for my MacroEconomic key formula's quiz
-
     def __init__(self):
+        self.master = None
         self.root = tk.Tk()
+
         self.root.title("Macroeconomic knowledge quiz")
         self.root.geometry("650x500")
         self.root.resizable(False,False)
@@ -27,34 +28,40 @@ class QuizApp:
         self.root.grid_columnconfigure(0, weight=1)
 
          # Create all frames
-        self.welcome_frame = WelcomeFrame(self)
-        self.quiz_frame = QuizFrame(self)
-        self.results_frame = ResultsFrame(self)
+        self.welcome_frame = WelcomeFrame(self.root, self)
+        self.quiz_frame = QuizFrame(self.root, self)
+        self.results_frame = ResultsFrame(self.root, self)
 
         self.welcome_frame.grid(row=0, column=0, sticky="nsew" )
         self.quiz_frame.grid(row=0, column=0, sticky="nsew" )
         self.results_frame.grid(row=0, column=0, sticky="nsew" )
         self.show_frame(self.welcome_frame)
-
+    def show_frame(Self,frame):
+        #brings the selected frame to the front
+        frame.tkraise()
+              
+        
 
   
 
     def start_quiz(self, name, topic):
     # here this will validate inputs and begin a quiz session.
-        name = self.name_entry.get()
-        topic = self.topic_var.get()
+      
         if not validate_name(name):
          messagebox.showerror("Error, please enter valid name")
          return
         if not validate_topic(topic, self.bank.get_topics()):
          messagebox.showerror("Error, please select valid topic")
          return
+        print(f"topic shows:'{topic}'")
+        print(f"available topics:{self.bank.get_topics()}")
 
         self.user_name = name
         self.selected_topic = topic
         self.questions = self.bank.get_questions(topic=topic, count=5)
         self.current_index = 0
         self.score = 0
+        self.quiz_frame.load_question()
         self.show_frame(self.quiz_frame)
       
 
@@ -79,16 +86,23 @@ class QuizApp:
         if self.current_index < len(self.questions):
             self.quiz_frame.load_question()
         else:
+            self.store.append_results(
+                self.user_name,
+                self.selected_topic,
+                self.score,
+                len(self.questions)
+            )
+            self.results_frame.show_results()
             self.show_frame(self.results_frame)
 
 
 class WelcomeFrame(tk.Frame):
 #The starting screen where the user enters their name and picks a topic.
 
-    def __init__(self, master):
+    def __init__(self, master,app):
         #Build the welcome screen widgets.
-        super().__init__(master.root, bg="#f0f4f8")
-        self.master = master
+        super().__init__(master, bg="#f0f4f8")
+        self.app = app
         self._build()
 
     def _build(self):
@@ -115,7 +129,7 @@ class WelcomeFrame(tk.Frame):
             self, text="Select Topic:", font=("Arial", 11), bg="#f0f4f8"
         ).pack()
         self.topic_var = tk.StringVar()
-        topics = self.master.bank.get_topics()
+        topics = self.app.bank.get_topics()
         self.topic_dropdown = ttk.Combobox(
             self, textvariable=self.topic_var,
             values=topics, state="readonly", width=28
@@ -140,6 +154,7 @@ class WelcomeFrame(tk.Frame):
         #Handle the Start Quiz button
         name = self.name_entry.get()
         topic = self.topic_var.get()
+        print(f"name:'{name}', topic:'{topic}'")
 
         if not validate_name(name):
             self.error_label.config(
@@ -148,40 +163,39 @@ class WelcomeFrame(tk.Frame):
             return
 
         self.error_label.config(text="")
-        self.master.start_quiz(name, topic)
+        self.app.start_quiz(name, topic)
 
 
 class QuizFrame(tk.Frame):
     #displays questions and answer options
 
-    def __init__(self, master):
+    def __init__(self, master,app):
         #Build the quiz screen widgets.
-        super().__init__(master.root)
+        super().__init__(master)
         self.configure(bg= "#4a6886")
-        self.master = master
+        self.app = app
         self._build()
 
     def _build(self):
         #Create and layout all widgets on the quiz screen
-      self.question_label = tk.Label(self, text="", font=("Arial",13))
-      self.question_label.pack(pady=10)
+        self.question_label = tk.Label(self, text="", font=("Arial",13))
+        self.question_label.pack(pady=10)
 
-      self.answer_var = tk.IntVar()
-      self.rb1 = tk.Radiobutton(self, text="", variable = self.answer_var, value=0)
-      self.rb2 = tk.Radiobutton(self, text="", variable = self.answer_var, value=1)
-      self.rb3 = tk.Radiobutton(self, text="", variable = self.answer_var, value=2)
-      self.rb4 = tk.Radiobutton(self, text="", variable = self.answer_var, value=3)
-      self.rb1.pack()
-      self.rb2.pack()
-      self.rb3.pack()
-      self.rb4.pack()
+        self.rb1 = tk.Radiobutton(self, text="", variable = self.app.answer_var, value=0)
+        self.rb2 = tk.Radiobutton(self, text="", variable = self.app.answer_var, value=1)
+        self.rb3 = tk.Radiobutton(self, text="", variable = self.app.answer_var, value=2)
+        self.rb4 = tk.Radiobutton(self, text="", variable = self.app.answer_var, value=3)
+        self.rb1.pack()
+        self.rb2.pack()
+        self.rb3.pack()
+        self.rb4.pack()
 
-      tk.Button(self,text ="submit", command =self._on_submit).pack(pady=10)
+        tk.Button(self,text ="submit", command =self._on_submit).pack(pady=10)
 
 
     def load_question(self):
         #here widgets will populate with the current questions 
-     question = self.master.questions[self.master.current_index]
+     question = self.app.questions[self.app.current_index]
      self.question_label.config(text=question.text)
      self.rb1.config(text=question.options[0])
      self.rb2.config(text=question.options[1])
@@ -191,28 +205,30 @@ class QuizFrame(tk.Frame):
 
     def _on_submit(self):
         # here this code chunk handles the submit answer button 
-        selected = self.master.answer_var.get()
+        selected = self.app.answer_var.get()
+        print(f"selected value:{selected}")
         if selected == -1:
             messagebox.showwarning("please select answer")
             return
-        question = self.master.questions[self.master.current_index]
+        question = self.app.questions[self.app.current_index]
         if question.is_correct(selected):
             messagebox.showinfo("Result","correct!!")
-            self.master.score +=1
+            self.app.score +=1
+            self.app.next_question()
         else:
             messagebox.showinfo("Result",f"Wrong! the correct answer was: {question.options[question.correct_index]}")
-            self.master.next_question()
+            self.app.next_question()
 
     def _on_next(self):
        # this handles next button click so user can go to the next question
-        self.master.next_question()
+        self.app.next_question()
 
 
 class ResultsFrame(tk.Frame):
     #The screen shown at the end of a quiz session
-    def __init__(self,master):
-        super().__init__(master.root)
-        self.master = master
+    def __init__(self,master,app):
+        super().__init__(master)
+        self.app = app
         tk.Label(self, text ="Quiz Complete!", font=("Arial",16)).pack(pady=20)
 
         self.score_label=tk.Label(self, text="", font=("Arial",13))
@@ -231,8 +247,8 @@ class ResultsFrame(tk.Frame):
        """ shows the final score on screen and depending
         on the outcomes a message will appear """
        
-       score = self.master.score
-       total = len(self.master.questions)
+       score = self.app.score
+       total = len(self.app.questions)
        percent = round((score / total) * 100)
     
        self.score_label.config(
@@ -249,8 +265,8 @@ class ResultsFrame(tk.Frame):
 
     def _view_results(self):
       # opens a new window with past results from the quiz
-      results = self.master.store.load_results()
-      win = tk.Toplevel(self.master)
+      results = self.app.store.load_results()
+      win = tk.Toplevel(self.app.root)
       win.title("All results")
 
       tk.Label(win,text ="All quiz results", font =("Arial",13)).pack(pady=10)
@@ -262,7 +278,7 @@ class ResultsFrame(tk.Frame):
 
     def _restart(self):
         #Returns to the welcome screen for another attempt
-        self.master.show_frame(WelcomeFrame)
+        self.app.show_frame(WelcomeFrame)
 
 
 app = QuizApp()

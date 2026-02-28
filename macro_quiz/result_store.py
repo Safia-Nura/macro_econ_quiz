@@ -39,4 +39,4 @@ class ResultStore:
             reader = csv.DictReader(f)
             return list(reader)
         except (OSError, csv.ERROR):
-         return 
+         return []
