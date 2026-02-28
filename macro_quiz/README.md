@@ -59,14 +59,14 @@ Welcome → Quiz → Results.
 - Submit Answer button
 - Feedback label showing correct or incorrect and an explanation
 - Next button to advance
-![image dispolaying quiz screen](Images/Quiz example.png)
+<img width="1129" height="912" alt="Image showing welcome screen" src="https://github.com/user-attachments/assets/f58e22c6-e0ad-4dc2-8731-7f1095a27977" />
 
 **Results Screen**
 - Final score as a fraction and percentage
 - Motivational message based on score
 - View All Results button (opens a scrollable history window)
 - Take Another Quiz button
-<img width="1143" height="934" alt="Image showing results" src="https://github.com/user-attachments/assets/afdaa396-b92a-4e3f-b388-02305cb9615d" />
+<img width="1143" height="934" alt="Image showing results screen" src="https://github.com/user-attachments/assets/afdaa396-b92a-4e3f-b388-02305cb9615d" />
 
 
 
