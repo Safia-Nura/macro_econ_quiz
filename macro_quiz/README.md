@@ -50,7 +50,7 @@ Welcome → Quiz → Results.
 - Topic dropdown (populated from `questions.json`)
 - Inline error message if name is invalid
 - Start Quiz button
-![picture displaying welcome screen](Images/wellcome.png)
+<img width="1129" height="912" alt="Image showing welcome screen" src="https://github.com/user-attachments/assets/f58e22c6-e0ad-4dc2-8731-7f1095a27977" />
 
 **Quiz Screen**
 - Progress label (e.g. "Question 2 of 5 | Topic: GDP")
