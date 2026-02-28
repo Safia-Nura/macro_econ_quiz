@@ -27,31 +27,28 @@ Built with Python and Tkinter for use by the macroeconomic surveillance team.
 1. Clone the repository:
 ```
 git clone https://https://github.com/Safia-Nura/macro_econ_quiz
-
+```
 2. Navigate into the project folder:
+
 ```
 cd macro_quiz
-```
+ ```
 
 3. Run the application:
 ```
 python quiz_app.py
 ```
-
 ---
-
 ## How to run the tests
 ```
 pytest tests/ -v
 ```
-
 All 19 tests should pass.
 
 ---
-
 ## Project structure
-```
-macro_quiz/
+---
+```macro_quiz/
 ├── quiz_app.py         — Tkinter GUI, main application
 ├── question.py         — Question class
 ├── question_bank.py    — loads and filters questions from JSON
@@ -67,7 +64,6 @@ macro_quiz/
 │   └── workflows/
 │       └── ci.yml      — GitHub Actions CI pipeline
 ├── README.md
-└── USER_GUIDE.md
 ```
 
 ---
@@ -100,14 +96,14 @@ Open `questions.json` and add a new entry following this format:
 
 ## Technologies used
 
-| Tool | Purpose |
+Tool & Purpose 
 |---|---|
-| Python 3.9+ | Core programming language |
-| Tkinter | Desktop GUI framework |
-| csv module | Persistent result storage |
-| json module | Loading quiz questions |
-| pytest | Unit testing |
-| GitHub Actions | Continuous integration |
+- Python 3.9+ Core programming language 
+- Tkinter Desktop GUI framework 
+- csv module: permeant storage for results  
+- json modul:e  Loading quiz questions 
+ - pytest: Unit testing 
+- GitHub Actions :Continuous integration
 
 ---
 
