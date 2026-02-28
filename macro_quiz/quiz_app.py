@@ -9,9 +9,9 @@ class QuizApp:
 
     def __init__(self):
         self.root = tk.Tk()
-        self.title("Macroeconomic knowledge quiz")
-        self.geometry("650x500")
-        self.resizable(False,False)
+        self.root.title("Macroeconomic knowledge quiz")
+        self.root.geometry("650x500")
+        self.root.resizable(False,False)
 
         self.bank =QuestionBank()
         self.store = ResultStore()
@@ -24,7 +24,7 @@ class QuizApp:
         self.answer_var = tk.IntVar(value=-1)
         # stretches frame to match window size
         self.grid_rowconfigure(0, weight=1)
-        self.grid_columnconfigure(0, weight=1)
+        self.root.grid_columnconfigure(0, weight=1)
 
          # Create all frames
         self.welcome_frame = WelcomeFrame(self.root)
@@ -32,19 +32,15 @@ class QuizApp:
         self.results_frame = ResultsFrame(self.root)
 
         self.welcome_frame.grid(row=0, column=0, sticky="nsew" )
-        self.quiz_frame_frame.grid(row=0, column=0, sticky="nsew" )
+        self.quiz_frame.grid(row=0, column=0, sticky="nsew" )
         self.results_frame.grid(row=0, column=0, sticky="nsew" )
         self.show_frame(self.welcome_frame)
 
 
-    def show_frame(self, frame_class):
-        #Brings specified frame to the front.
+ 
 
-        
-        frame = self.frames[frame_class]
-        frame.tkraise()
 
-    def start_quiz(self, name: str, topic: str):
+    def start_quiz(self, name, topic):
     # here this will validate inputs and begin a quiz session.
         name = self.name_entry.get()
         topic = self.topic_var.get()
@@ -82,9 +78,9 @@ class QuizApp:
         self.answer_var.set(-1)
 
         if self.current_index < len(self.questions):
-            self.frames[QuizFrame].load_question()
+            self.quiz_frame.load_question()
         else:
-            self.show_frame(ResultsFrame)
+            self.show_frame(self.results_frame)
 
 
 class WelcomeFrame(tk.Frame):
@@ -168,8 +164,8 @@ class QuizFrame(tk.Frame):
 
     def _build(self):
         #Create and layout all widgets on the quiz screen
-      self.question_abel = tk.Label(self, text="", font=("Arial",13))
-      self.questions_label.pack(pady=10)
+      self.question_label = tk.Label(self, text="", font=("Arial",13))
+      self.question_label.pack(pady=10)
 
       self.answer_var = tk.IntVar()
       self.rb1 = tk.Radiobutton(self, text="", variable = self.answer_var, value=0)
@@ -186,10 +182,12 @@ class QuizFrame(tk.Frame):
 
     def load_question(self):
         #here widgets will populate with the current questions 
-        question = self.master.questions[self.master.current_index]
-        self.question_label.config(text=question.text)
-        for i in range(4):
-            self.radio_buttons[i].config(Text=question.options[i])
+     question = self.master.questions[self.master.current_index]
+     self.question_label.config(text=question.text)
+     self.rb1.config(text=question.options[0])
+     self.rb2.config(text=question.options[1])
+     self.rb3.config(text=question.options[2])
+     self.rb4.config(text=question.options[3])
 
 
     def _on_submit(self):
@@ -203,7 +201,7 @@ class QuizFrame(tk.Frame):
             messagebox.showinfo("Result","correct!!")
             self.master.score +=1
         else:
-            messagebox.showinfo("Result,"f"Wrong! the correct answer was: {question.options[question.correct_index]}")
+            messagebox.showinfo("Result",f"Wrong! the correct answer was: {question.options[question.correct_index]}")
             self.master.next_question()
 
     def _on_next(self):
@@ -216,15 +214,15 @@ class ResultsFrame(tk.Frame):
     def __init__(self,master):
         super().__init__(master)
         self.master = master
-        tk.Label(self, text ="Quiz Complete!", font=("Arial,16")).pack(paddy=20)
+        tk.Label(self, text ="Quiz Complete!", font=("Arial",16)).pack(pady=20)
 
         self.score_label=tk.Label(self, text="", font=("Arial",13))
         self.score_label.pack(pady=10)
 
         self.message_label = tk.Label(self, text="")
-        self.message_label.pack(paddy=5)
-        tk.Button(self, text =" View all results", command= self._view_results).pack(paddy=10)
-        tk.Button(self, text =" Try quiz again!", command= self._restart).pack(paddy=5)
+        self.message_label.pack(pady=5)
+        tk.Button(self, text =" View all results", command= self._view_results).pack(pady=10)
+        tk.Button(self, text =" Try quiz again!", command= self._restart).pack(pady=5)
 
 
  
@@ -256,9 +254,9 @@ class ResultsFrame(tk.Frame):
       win = tk.Toplevel(self.master)
       win.title("All results")
 
-      tk.label(win,text ="All quiz results", font =("Arial",13)).pack(paddy=10)
+      tk.Label(win,text ="All quiz results", font =("Arial",13)).pack(pady=10)
       if not results:
-          tk.Labe(win, text="No results yet").pack()
+          tk.Label(win, text="No results yet").pack()
       else:
           for r in results:
               tk.Label(win, text=f"{r['name']} -{r['score']}/{r['total']}").pack()
@@ -269,4 +267,4 @@ class ResultsFrame(tk.Frame):
 
 
 app = QuizApp()
-app.mainloop()
+app.root.mainloop()
