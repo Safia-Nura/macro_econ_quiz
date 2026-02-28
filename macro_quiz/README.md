@@ -15,26 +15,22 @@
 
 ## 1. Introduction
 
-I work as a Senior Research Assitant within a macroeconomic surveillance team that
-monitors economic conditions in China and the United States. The team works daily
-with indicators such as GDP growth, trade balances, inflation indices and exchange
-rate movements. New analysts joining the team are expected to understand the
-mathematical calculations that underpin these indicators before they contribute to
-briefing products.
+I work as a Senior research assistant mainly focusing on macroeconomic surveillance within 
+North America, emerging market and Asia regions. The teams I work closely with work wil 
+indicators such as GDP growth, trade balance, inflation indices and exchange rates. 
+Any new joiners are expected to understand the mathematical calculations that underpin
+these indicators. 
 
-To support this, I developed a desktop quiz application using Python and Tkinter.
-The application tests users on five core topic areas directly relevant to the team's
-work: GDP measurement, real versus nominal GDP, growth rate calculations, trade
-balance arithmetic, and exchange rates and purchasing power parity. Each topic
-contains five multiple-choice questions, giving a pool of 25 questions in total.
+To support this, I developed a simple quiz programmed in Python and using Tkinter. 
+The application tests users on five core topics related to GDP, growth rate, trade balance
+exchange rate. Each topic has five multiple choice questions, giving total of 25 questions
+for this quiz.
 
-The application is a Minimum Viable Product (MVP) designed to meet a genuine
-training need. It provides a simple, self-paced interface that requires no
-installation beyond Python itself. Results are saved automatically to a CSV file
-after every attempt, which analysts can export and use as training evidence. The
-project follows a professional development process, with code stored on GitHub,
-features added incrementally, automated testing via pytest, and a continuous
-integration pipeline using GitHub Actions.
+For the application, this is a Minimum viable product (MVP) designed to meet all core requirements
+for this assessment. There is no installation required beyond python and results are saved
+automatically to a CSV file after every attempt, which analysts can export and use for training
+monitoring purposes.With the code stored on Github and features added incrementally followed by 
+unit testing via pytest. 
 
 ---
 
@@ -42,8 +38,7 @@ integration pipeline using GitHub Actions.
 
 ### 2.1 GUI Design
 
-The interface is divided into three screens. The user moves through them in order:
-Welcome → Quiz → Results.
+The interface includes three sections the user follows this order to navigate Welcome screen > Quiz screen> results screen.
 
 **Welcome Screen**
 - Name entry field
@@ -94,10 +89,9 @@ Welcome → Quiz → Results.
 | N4 | The CSV file must be readable in Excel without any conversion |
 
 
-
-Tkinter was chosen over Flask or Streamlit because it is part of the Python
-standard library. This means the application runs without any `pip install` step,
-which makes it straightforward to share with colleagues.
+Tkinter was chosen over Flash or Streamnlit due to this being part of Python
+making the application run easily without further installs which makes it
+easy and straightforward for analysts. 
 
 ### 2.4 Class Diagram
 
@@ -250,7 +244,8 @@ class Question:
 
 `QuestionBank` loads all questions from `questions.json` on initialisation.
 `get_questions()` filters by topic and returns a random selection. If more
-questions are requested than are available, a `ValueError` is raised.
+questions are requested than are available, a `ValueError` is raised.**To note
+for questions.json all 25 questions are AI generated from chatgpt**
 
 ```python
 def get_questions(self, topic: str = None, count: int = 5) -> list:
@@ -292,10 +287,8 @@ def append_result(self, name: str, topic: str, score: int, total: int) -> None:
 
 ### 3.3 Validators
 
-Input validation uses pure functions in `validators.py`. A pure function
-always returns the same output for the same input with no side effects,
-which makes it straightforward to test in isolation.
-
+input validation uses functions in `validators.py` this was done to ensure
+easy and straightforward testing.
 ```python
 def validate_name(name: str) -> bool:
     # Reject empty strings, whitespace-only and names over 60 characters
@@ -306,23 +299,20 @@ def validate_name(name: str) -> bool:
 ```
 
 ### 3.4 Tkinter GUI
-
-The application uses three `tk.Frame` screens stacked on top of each other.
-`tkraise()` brings the relevant frame to the front when needed. `QuizApp`
-inherits from `tk.Tk` and holds all application state as instance attributes,
-avoiding global variables.
+The application uses three `tk.Frame` screens stacked on top of each other, 
+`tkraise()` brings the frame to the front if relevant and when needed. 
+QuickApp holds all the application instances attributes.
 
 ```python
-# Stretch the frame to fill the full window
-self.grid_rowconfigure(0, weight=1)
-self.grid_columnconfigure(0, weight=1)
+  # Create all frames
+        self.welcome_frame = WelcomeFrame(self.root)
+        self.quiz_frame = QuizFrame(self.root)
+        self.results_frame = ResultsFrame(self.root)
 
-for FrameClass in (WelcomeFrame, QuizFrame, ResultsFrame):
-    frame = FrameClass(self)
-    self.frames[FrameClass] = frame
-    frame.grid(row=0, column=0, sticky="nsew")
-
-self.show_frame(WelcomeFrame)
+        self.welcome_frame.grid(row=0, column=0, sticky="nsew" )
+        self.quiz_frame_frame.grid(row=0, column=0, sticky="nsew" )
+        self.results_frame.grid(row=0, column=0, sticky="nsew" )
+        self.show_frame(self.welcome_frame)
 ```
 
 ---
@@ -331,15 +321,10 @@ self.show_frame(WelcomeFrame)
 
 ### 4.1 Testing Strategy
 
-Two methods of testing were used. Automated unit testing with pytest was used
-for all logic that does not depend on the GUI, such as the validator functions,
-the `Question` class and `ResultStore`. Manual testing was used to verify GUI
-behaviour including screen transitions, feedback messages and the results window.
-
-Unit testing was prioritised for pure functions and file I/O because these are
-the most likely sources of silent errors. GUI behaviour was tested manually
-because Tkinter interfaces are difficult to test automatically without additional
-frameworks.
+For testing, I used two methods first was automated unit testing with pytest for
+all logic that isn't dependant on the GUI such as, validator functions, the 
+`Question` class and `ResultStore`. Manual testing was used to verify GUI
+behavior such as screen transitions, feedback message and results window.
 
 ### 4.2 Manual Test Outcomes
 
@@ -354,8 +339,7 @@ frameworks.
 | Take Another Quiz | Click Take Another Quiz | Returns to Welcome screen | Returned correctly |  Pass |
 
 ### 4.3 Unit Test Outcomes
-
-The test suite contains 19 test cases across four modules. All 19 pass.
+The test contained 19 test cases across four modules, all 19 passed as seen below.
 
 ```
 tests/test_question.py::test_question_stores_text          PASSED
@@ -381,8 +365,6 @@ tests/test_validators.py::test_invalid_topic               PASSED
 19 passed
 ```
 
-The GitHub Actions CI pipeline runs these tests automatically on every push to
-main. A green tick on a commit confirms all tests passed.
 
 ---
 
@@ -430,7 +412,7 @@ macro_quiz/
 ├── validators.py       — Pure input validation functions
 ├── questions.json      — All 25 quiz questions
 ├── tests/              — pytest test suite
-└── .github/workflows/  — GitHub Actions CI pipeline
+
 ```
 
 **Adding new questions**
@@ -447,38 +429,35 @@ Open `questions.json` and add a new entry following this format:
 }
 ```
 
-`correct_index` is 0 for A, 1 for B, 2 for C and 3 for D. No code changes
-are needed when adding questions.
+`correct_index` is 0 for A, 1 for B, 2 for C and 3 for D. To add
+questions, there is no code needed the user needs to update the JSON
+file.
 
 ---
 
 ## 6. Evaluation
+Overall, I found this a bit challenging at parts, such as understanding how to
+structure classes, functions and files. I found that by having functions stored
+in separate files, testing was far more straightforward. Furthermore, by having all 
+the logic classes set up first and testing this before GUI development made the 
+process a lot more smoother.
 
-Overall I am pleased with how the project turned out. The application works as
-intended and meets all six technical requirements in the brief. Building the
-logic classes first and testing them before starting the GUI made the development
-process much smoother. When bugs appeared in the interface, I could be confident
-the underlying logic was correct, which made them quicker to identify and fix.
+Choose Tkinter was the appropriate decision as I felt more comfortable using Tkinter
+instead of Flask. It taught me how GUI events loop and widget state in a practical way.
+Working through indentation errors proved a bit more difficult as I found I found that
+after each line I would have a habit of pressing space button twice, which would alter 
+class structure. This is habit I noticed in my own work place when using R despite 
+this flaw, I found it helpful to understand how python handles objects and scope.
 
-Choosing Tkinter was the right decision at this stage of the apprenticeship. It
-taught me how GUI event loops, widget state and callback functions work in a
-practical and direct way. Working through the indentation errors and debugging
-the class structure also improved my understanding of how Python handles objects
-and scope, which I found genuinely useful.
+Due to the sections I found challenging I found myself relying on searching for solutions
+online, through forums and help pages. This is a reflection I found interesting during the
+project.
 
-The CI pipeline was also valuable. It caught two regressions during development
-that would otherwise have gone unnoticed. Seeing the green tick on GitHub after
-every push gave me confidence the codebase remained stable throughout.
-
-There are things I would improve with more time. The application has no timer,
-which means questions are untimed and do not reflect the pressure of real
-analytical deadlines. There is also no administrator interface, so adding new
-questions requires editing the JSON file directly, which may be a barrier for
-less technical colleagues. In a future version I would add a timed mode and a
-simple admin screen for managing questions through the GUI. I would also
-consider packaging the application as a standalone executable using
-[PyInstaller](https://pyinstaller.org) so colleagues without Python installed
-could run it without any setup.
+There are things I would improve with more time and understanding given my learning 
+abilities. The application has no timer, which means questions are un-timed and do
+not reflect the pressure of real quiz settings. There isn't a GUI for adding new 
+questions, making this process requiring editing the JSON file directly. Which
+could be a barrier for some who are less technical.
 
 ---
 
@@ -486,5 +465,3 @@ could run it without any setup.
 
 - [Python Tkinter documentation](https://docs.python.org/3/library/tkinter.html)
 - [pytest documentation](https://docs.pytest.org)
-- [GitHub Actions documentation](https://docs.github.com/en/actions)
-- [PyInstaller documentation](https://pyinstaller.org/en/stable/)
