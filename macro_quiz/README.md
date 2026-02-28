@@ -50,7 +50,7 @@ Welcome → Quiz → Results.
 - Topic dropdown (populated from `questions.json`)
 - Inline error message if name is invalid
 - Start Quiz button
-![picture displaying welcome screen](wellcome.png)
+![picture displaying welcome screen](Images/wellcome.png)
 
 **Quiz Screen**
 - Progress label (e.g. "Question 2 of 5 | Topic: GDP")
@@ -59,14 +59,14 @@ Welcome → Quiz → Results.
 - Submit Answer button
 - Feedback label showing correct or incorrect and an explanation
 - Next button to advance
-![image dispolaying quiz screen](Quizexample.png)
+![image dispolaying quiz screen](Images/Quiz example.png)
 
 **Results Screen**
 - Final score as a fraction and percentage
 - Motivational message based on score
 - View All Results button (opens a scrollable history window)
 - Take Another Quiz button
-![image displaying results page] (resultspage.png)
+![image displaying results page] (Images/results page.PNG) 
 
 
 
