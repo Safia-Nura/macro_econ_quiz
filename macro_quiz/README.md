@@ -95,8 +95,9 @@ which makes it straightforward to share with colleagues.
 
 ### 2.4 Class Diagram
 
+
 ```
-```mermaid
+mermaid
 classDiagram
     class Question {
         -text str
