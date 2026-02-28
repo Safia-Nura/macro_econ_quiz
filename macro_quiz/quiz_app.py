@@ -27,9 +27,9 @@ class QuizApp:
         self.root.grid_columnconfigure(0, weight=1)
 
          # Create all frames
-        self.welcome_frame = WelcomeFrame(self.root)
-        self.quiz_frame = QuizFrame(self.root)
-        self.results_frame = ResultsFrame(self.root)
+        self.welcome_frame = WelcomeFrame(self)
+        self.quiz_frame = QuizFrame(self)
+        self.results_frame = ResultsFrame(self)
 
         self.welcome_frame.grid(row=0, column=0, sticky="nsew" )
         self.quiz_frame.grid(row=0, column=0, sticky="nsew" )
@@ -87,7 +87,7 @@ class WelcomeFrame(tk.Frame):
 
     def __init__(self, master):
         #Build the welcome screen widgets.
-        super().__init__(master, bg="#f0f4f8")
+        super().__init__(master.root, bg="#f0f4f8")
         self.master = master
         self._build()
 
@@ -156,7 +156,7 @@ class QuizFrame(tk.Frame):
 
     def __init__(self, master):
         #Build the quiz screen widgets.
-        super().__init__(master)
+        super().__init__(master.root)
         self.configure(bg= "#4a6886")
         self.master = master
         self._build()
@@ -211,7 +211,7 @@ class QuizFrame(tk.Frame):
 class ResultsFrame(tk.Frame):
     #The screen shown at the end of a quiz session
     def __init__(self,master):
-        super().__init__(master)
+        super().__init__(master.root)
         self.master = master
         tk.Label(self, text ="Quiz Complete!", font=("Arial",16)).pack(pady=20)
 
