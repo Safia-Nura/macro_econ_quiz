@@ -25,15 +25,15 @@ briefing products.
 To support this, I developed a desktop quiz application using Python and Tkinter.
 The application tests users on five core topic areas directly relevant to the team's
 work: GDP measurement, real versus nominal GDP, growth rate calculations, trade
-balance arithmetic, and exchange rates and purchasing power parity. Each topic
+balance arithmetic and exchange rates and purchasing power parity. Each topic
 contains five multiple-choice questions, giving a pool of 25 questions in total.
 
 The application is a Minimum Viable Product (MVP) designed to meet a genuine
 training need. It provides a simple, self-paced interface that requires no
 installation beyond Python itself. Results are saved automatically to a CSV file
-after every attempt, which analysts can export and use as training evidence. The
-project follows a professional development process, with code stored on GitHub,
-features added incrementally, automated testing via pytest, and a continuous
+after every attempt which analysts can export and use as training evidence. The
+project follows a professional development process with code stored on GitHub,
+features added incrementally, automated testing via pytest and a continuous
 integration pipeline using GitHub Actions.
 
 ---
@@ -458,13 +458,13 @@ Overall I am pleased with how the project turned out. The application works as
 intended and meets all six technical requirements in the brief. Building the
 logic classes first and testing them before starting the GUI made the development
 process much smoother. When bugs appeared in the interface, I could be confident
-the underlying logic was correct, which made them quicker to identify and fix.
+the underlying logic was correct which made them quicker to identify and fix.
 
 Choosing Tkinter was the right decision at this stage of the apprenticeship. It
-taught me how GUI event loops, widget state and callback functions work in a
+taught me how GUI event loops widget state and callback functions work in a
 practical and direct way. Working through the indentation errors and debugging
 the class structure also improved my understanding of how Python handles objects
-and scope, which I found genuinely useful.
+and scope which I found genuinely useful.
 
 The CI pipeline was also valuable. It caught two regressions during development
 that would otherwise have gone unnoticed. Seeing the green tick on GitHub after
@@ -473,7 +473,7 @@ every push gave me confidence the codebase remained stable throughout.
 There are things I would improve with more time. The application has no timer,
 which means questions are untimed and do not reflect the pressure of real
 analytical deadlines. There is also no administrator interface, so adding new
-questions requires editing the JSON file directly, which may be a barrier for
+questions requires editing the JSON file directly which may be a barrier for
 less technical colleagues. In a future version I would add a timed mode and a
 simple admin screen for managing questions through the GUI. I would also
 consider packaging the application as a standalone executable using
