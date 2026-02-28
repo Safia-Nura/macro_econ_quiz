@@ -77,7 +77,7 @@ class QuizApp(tk.Tk):
         if self.current_index < len(self.questions):
             self.frames[QuizFrame].load_question()
         else:
-            self.store.append_result(
+            self.store.append_results(
                 self.user_name,
                 self.selected_topic,
                 self.score,
