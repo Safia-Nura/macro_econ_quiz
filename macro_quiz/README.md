@@ -66,7 +66,7 @@ Welcome → Quiz → Results.
 - Motivational message based on score
 - View All Results button (opens a scrollable history window)
 - Take Another Quiz button
-![image displaying results page] (Images/results page.PNG) 
+<img width="1143" height="934" alt="Image showing results" src="https://github.com/user-attachments/assets/afdaa396-b92a-4e3f-b388-02305cb9615d" />
 
 
 
