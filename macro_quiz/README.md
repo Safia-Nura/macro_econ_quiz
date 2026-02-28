@@ -211,16 +211,12 @@ sequenceDiagram
 ```mermaid
 stateDiagram-v2
     [*] --> WelcomeScreen
-
     WelcomeScreen --> WelcomeScreen : Invalid name entered
     WelcomeScreen --> QuizScreen : Valid name and topic submitted
-
     QuizScreen --> QuizScreen : Answer submitted, Next clicked
-    QuizScreen --> ResultsScreen : Final question answered
-
+    QuizScreen --> ResultsScreen : Final question answered, result saved to CSV
     ResultsScreen --> WelcomeScreen : Take Another Quiz clicked
     ResultsScreen --> ResultsScreen : View All Results clicked
-
     ResultsScreen --> [*]
 ```
 ---
