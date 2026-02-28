@@ -87,16 +87,7 @@ Welcome → Quiz → Results.
 | N3 | The interface must be usable by someone with no technical background |
 | N4 | The CSV file must be readable in Excel without any conversion |
 
-### 2.3 Tech Stack
 
-| Technology | Purpose |
-|---|---|
-| Python 3.9+ | Core programming language |
-| Tkinter | Desktop GUI (built into Python standard library) |
-| csv module | Reading and writing result records |
-| json module | Loading quiz questions from a file |
-| pytest | Automated unit testing |
-| GitHub Actions | Continuous integration pipeline |
 
 Tkinter was chosen over Flask or Streamlit because it is part of the Python
 standard library. This means the application runs without any `pip install` step,
@@ -494,5 +485,4 @@ could run it without any setup.
 - [Python Tkinter documentation](https://docs.python.org/3/library/tkinter.html)
 - [pytest documentation](https://docs.pytest.org)
 - [GitHub Actions documentation](https://docs.github.com/en/actions)
-- [Conventional Commits specification](https://www.conventionalcommits.org)
 - [PyInstaller documentation](https://pyinstaller.org/en/stable/)
